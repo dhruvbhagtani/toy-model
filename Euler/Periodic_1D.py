@@ -18,8 +18,8 @@ def partial_x_cd(f,dx,nx):
     for j in np.arange(1,f.size-1,1):
         dfdx[j] = 1/(2*dx) * (f[j+1]-f[j-1])    #Backward difference
     
-    dfdx[f.size] = 1/(2*dx) *(f[0] - f[f.size-1])
-    dfdx[0] = 1/(2*dx) *(f[2] - f[f.size])
+    dfdx[-1] = 1/(2*dx) *(f[0] - f[-2])
+    dfdx[0] = 1/(2*dx) *(f[1] - f[-1])
     return dfdx
 
 def partial_x_bd(f,dx,nx):
@@ -36,7 +36,7 @@ def partial_x_bd(f,dx,nx):
     dfdx: Partial derivative of f
     """
 
-    #dfdx = np.zeros_like(f)
+    dfdx = np.zeros_like(f)
     for j in range(f.size):
         dfdx[j] = 1/(dx) * (f[j]-f[j-1])    #Backward difference
 
